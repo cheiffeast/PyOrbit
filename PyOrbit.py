@@ -94,7 +94,7 @@ class planet():
 # Simple test to run, mouse wheel speed up/slows down simulation, left mouse click creates a new orbitting body at the
 # Cursor location
 def test():
-    iterations = 10
+    iterations = 2
     a = planet([0.7, 0.8], [350, 50], 100000, 100 * iterations)
     W = World([a], iterations)
 
@@ -111,7 +111,7 @@ def test():
             if event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
                     mousePosition = pygame.mouse.get_pos()
-                    a = planet([randint(-200, 200) / 100, randint(-200, 200) / 100], [mousePosition[0], mousePosition[1]], randint(100000, 100000))
+                    a = planet([randint(-300, 300) / 100, randint(-300, 300) / 100], [mousePosition[0], mousePosition[1]], randint(100000, 100000))
                     W.planets.append(a)
 
 
@@ -128,4 +128,10 @@ def test():
     pygame.quit()
 
 
-test()
+while 1:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+        if event.type == MOUSEBUTTONDOWN:
+            test()
+            break
